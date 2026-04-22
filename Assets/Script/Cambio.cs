@@ -15,6 +15,6 @@ public class Cambio : MonoBehaviour
     }
     public void cambiarEscena()
     {
-        SceneManager.LoadScene("juego");
+        SceneManager.LoadScene("cinematica");
     }
 }
