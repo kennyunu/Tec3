@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class moneda : MonoBehaviour
 {
@@ -60,10 +61,8 @@ public class moneda : MonoBehaviour
         }
         else if (puntaje >= 40 && !win)
         {
-            textoWin.gameObject.SetActive(true);
-            anim.SetBool("ganar", true);
-            movimiento.enabled = false;
             win = true;
+            StartCoroutine(Victoria());
         }
 
     }
@@ -73,6 +72,17 @@ public class moneda : MonoBehaviour
         texto.gameObject.SetActive(true);
         yield return new WaitForSeconds(3f);
         texto.gameObject.SetActive(false);
+    }
+
+    private IEnumerator Victoria()
+    {
+        textoWin.gameObject.SetActive(true);
+        anim.SetBool("ganar", true);
+        movimiento.enabled = false;
+
+        yield return new WaitForSeconds(3f);
+
+        SceneManager.LoadScene("victoria");
     }
 
     private void OnTriggerEnter(Collider elemento)
