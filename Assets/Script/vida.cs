@@ -16,6 +16,8 @@ public class vida : MonoBehaviour
 
     public TextMeshProUGUI textoGameOver;
 
+    public GameObject efectoSangre;
+
     void Start()
     {
         jugador.SetActive(true);
@@ -35,6 +37,7 @@ public class vida : MonoBehaviour
         if (elemento.CompareTag("trampa") || elemento.CompareTag("Sierra"))
         {
             life--;
+            ActivarSangre();
             Debug.Log("Vida: " + life);
 
             ActualizarCorazones();
@@ -56,6 +59,7 @@ public class vida : MonoBehaviour
         if (toque.gameObject.CompareTag("Enemigo"))
         {
             life--;
+            ActivarSangre();
             Debug.Log("Vida: " + life);
 
             ActualizarCorazones();
@@ -79,5 +83,23 @@ public class vida : MonoBehaviour
     void cargarescena()
     {
         SceneManager.LoadScene("derrota");
+    }
+
+    void ActivarSangre()
+    {
+        efectoSangre.SetActive(true);
+
+        ParticleSystem ps = efectoSangre.GetComponent<ParticleSystem>();
+        if (ps != null)
+        {
+            ps.Play();
+        }
+
+        Invoke("DesactivarSangre", 2f);
+    }
+
+    void DesactivarSangre()
+    {
+        efectoSangre.SetActive(false);
     }
 }
