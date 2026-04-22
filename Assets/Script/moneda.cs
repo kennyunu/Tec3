@@ -62,7 +62,7 @@ public class moneda : MonoBehaviour
         else if (puntaje >= 40 && !win)
         {
             win = true;
-            StartCoroutine(Victoria());
+            Victoria();
         }
 
     }
@@ -74,14 +74,17 @@ public class moneda : MonoBehaviour
         texto.gameObject.SetActive(false);
     }
 
-    private IEnumerator Victoria()
+    private void Victoria()
     {
         textoWin.gameObject.SetActive(true);
         anim.SetBool("ganar", true);
         movimiento.enabled = false;
+        Invoke("cargarescena", 2f);
 
-        yield return new WaitForSeconds(3f);
+    }
 
+    void cargarescena()
+    {
         SceneManager.LoadScene("victoria");
     }
 
