@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO.Ports;
+
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -10,10 +12,15 @@ public class NewBehaviourScript : MonoBehaviour
     public float valor = 60f;
     public float velocidad = 2f;
 
+    private  float distanciaMov;
+    SerialPort puerto = new SerialPort("COM20", 9600);
+
     void Start()
     {
-
+        puerto.Open();
+        puerto.ReadTimeout = 1;
     }
+
 
     void Update()
     {
@@ -23,23 +30,39 @@ public class NewBehaviourScript : MonoBehaviour
         vertical = Input.GetAxis("Mouse Y") * Time.deltaTime * valor;
         transform.Rotate(Vector3.up * vertical);
 
-        if(Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector3.forward*Time.deltaTime*velocidad);
-        }
-        else if(Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector3.left*Time.deltaTime*velocidad);
-        }
+        distanciaMov = vel * Time.deltaTime;
 
-        else if(Input.GetKey(KeyCode.D))
+        if(puerto.IsOpen)
         {
-            transform.Translate(Vector3.right*Time.deltaTime*velocidad);
-        }
+            try
+            {
+                mover(puerto.ReadByte());
+                print(puerto.ReadByte());
+            }
+            catch(System.Exception)
+            {
 
-        else if(Input.GetKey(KeyCode.S))
+            }
+        }
+    }
+
+     void mover(int direccion)
+    {
+        if(direccion == 1)
         {
-            transform.Translate(Vector3.back*Time.deltaTime*velocidad);
+            transform.Translate(Vector3.left * distanciaMov);
+        }
+        if(direccion == 2)
+        {
+            transform.Translate(Vector3.right * distanciaMov);
+        }
+        if(direccion == 3)
+        {
+            transform.Translate(Vector3.forward * distanciaMov);
+        }
+        if(direccion == 4)
+        {
+            transform.Translate(Vector3.back * distanciaMov);
         }
     }
 }
