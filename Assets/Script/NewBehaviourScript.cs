@@ -10,7 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
     public float vertical;
 
     public float valor = 60f;
-    public float velocidad = 2f;
+    public float vel = 2f;
 
     private  float distanciaMov;
     SerialPort puerto = new SerialPort("COM20", 9600);
