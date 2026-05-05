@@ -47,7 +47,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
-     void mover(int datoArduino)
+     void mover(string datoArduino)
     {
         dato = int.Parse(datoArduino);
         
