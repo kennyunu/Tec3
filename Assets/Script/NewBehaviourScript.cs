@@ -53,11 +53,11 @@ public class NewBehaviourScript : MonoBehaviour
         
         if(dato<400)
         {
-            transform.Translate(Vector3.left * vel);
+            transform.Translate(Vector3.left * distanciaMov);
         }
         else if(dato>601)
         {
-            transform.Translate(Vector3.right * vel);
+            transform.Translate(Vector3.right * distanciaMov);
         }        
     }
 }
