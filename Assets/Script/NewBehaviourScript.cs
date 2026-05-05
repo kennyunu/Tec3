@@ -14,6 +14,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private  float distanciaMov;
     SerialPort puerto = new SerialPort("COM20", 9600);
+    private int dato;
 
     void Start()
     {
@@ -36,8 +37,8 @@ public class NewBehaviourScript : MonoBehaviour
         {
             try
             {
-                mover(puerto.ReadByte());
-                print(puerto.ReadByte());
+                mover(puerto.ReadLine());
+                print(puerto.ReadLine());
             }
             catch(System.Exception)
             {
@@ -46,23 +47,17 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
-     void mover(int direccion)
+     void mover(int datoArduino)
     {
-        if(direccion == 1)
+        dato = int.Parse(datoArduino);
+        
+        if(dato<400)
         {
-            transform.Translate(Vector3.left * distanciaMov);
+            transform.Translate(Vector3.left * vel);
         }
-        if(direccion == 2)
+        else if(dato>601)
         {
-            transform.Translate(Vector3.right * distanciaMov);
-        }
-        if(direccion == 3)
-        {
-            transform.Translate(Vector3.forward * distanciaMov);
-        }
-        if(direccion == 4)
-        {
-            transform.Translate(Vector3.back * distanciaMov);
-        }
+            transform.Translate(Vector3.right * vel);
+        }        
     }
 }
