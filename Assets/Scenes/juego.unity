@@ -5831,7 +5831,7 @@ MonoBehaviour:
   horizontal: 0
   vertical: 0
   valor: 60
-  velocidad: 2
+  vel: 0.5
 --- !u!114 &406733228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33750,7 +33750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9efe363fabe587c46afd2bf997010eec, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9efe363fabe587c46afd2bf997010eec, type: 3}
       propertyPath: m_TagString

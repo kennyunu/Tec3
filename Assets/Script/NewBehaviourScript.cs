@@ -10,11 +10,12 @@ public class NewBehaviourScript : MonoBehaviour
     public float vertical;
 
     public float valor = 60f;
-    public float vel = 2f;
-
+    public float vel = 0.5f;
+    public float vel2 = 0.5f;
     private  float distanciaMov;
-    SerialPort puerto = new SerialPort("COM20", 9600);
+    SerialPort puerto = new SerialPort("COM3", 9600);
     private int dato;
+    private int dato2;
 
     void Start()
     {
@@ -47,17 +48,35 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
-     void mover(string datoArduino)
+    void mover(string datoArduino)  //"data1,data2"
+                                    //  0      1    
+                                    //datosArray[0] = "data1"
+                                    //datosArray[1] = "data2"
     {
-        dato = int.Parse(datoArduino);
-        
-        if(dato<400)
+        string[] datosArray = datoArduino.Split(char.Parse(","));
+
+        if (datosArray.Length == 2)
         {
-            transform.Translate(Vector3.left * distanciaMov);
+            dato = int.Parse(datosArray[0]);   //data1 = "data1"
+            dato2 = int.Parse(datosArray[1]);  //data2  = "data2"
+            print(dato + "   " + dato2);
         }
-        else if(dato>601)
+
+        if (dato >= 800)
         {
-            transform.Translate(Vector3.right * distanciaMov);
-        }        
+            //Space.Self Space.World
+            transform.Translate(Vector3.left * distanciaMov, Space.Self);       }
+        if (dato < 300)
+        {
+            transform.Translate(Vector3.right * distanciaMov, Space.Self);       }
+
+        if (dato2 >= 800)
+        {
+            transform.Translate(Vector3.forward * distanciaMov, Space.Self);       }
+        if (dato2 < 300)
+        {
+            transform.Translate(Vector3.back * distanciaMov, Space.Self);       }
+        
+
     }
 }
