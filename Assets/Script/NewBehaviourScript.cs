@@ -14,8 +14,8 @@ public class NewBehaviourScript : MonoBehaviour
     public float vel2 = 0.5f;
     private  float distanciaMov;
     SerialPort puerto = new SerialPort("COM3", 9600);
-    private int dato;
-    private int dato2;
+    public int dato;
+    public int dato2;
 
     void Start()
     {

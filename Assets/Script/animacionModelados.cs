@@ -7,6 +7,11 @@ public class animacionModelados : MonoBehaviour {
 
     public Animator anim; //Variable del animator
 
+    private int dato;
+    private int dato2;
+
+    public NewBehaviourScript controlador;
+
 
     // Use this for initialization
     void Start ()
@@ -39,29 +44,46 @@ public class animacionModelados : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (Input.GetKey(KeyCode.W))
+        dato = controlador.dato;
+        dato2 = controlador.dato2;
+        animar(dato + "," + dato2);
+    }
+
+    void animar(string datoArduino)  //"data1,data2"
+                                    //  0      1    
+                                    //datosArray[0] = "data1"
+                                    //datosArray[1] = "data2"
+    {
+        string[] datosArray = datoArduino.Split(char.Parse(","));
+
+        if (datosArray.Length == 2)
         {
-            forward();
+            dato = int.Parse(datosArray[0]);   //data1 = "data1"
+            dato2 = int.Parse(datosArray[1]);  //data2  = "data2"
+            print(dato + "   " + dato2);
         }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            backward();
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            right();
-        }
-        else if (Input.GetKey(KeyCode.A))
+
+        anim.SetBool("adelante", false);
+        anim.SetBool("atras", false);
+        anim.SetBool("derecha", false);
+        anim.SetBool("izquierda", false);
+
+        if (dato >= 800)
         {
             left();
         }
-        else
+        if (dato < 300)
         {
-            anim.SetBool("adelante", false);
-            anim.SetBool("atras", false);
-            anim.SetBool("derecha", false);
-            anim.SetBool("izquierda", false);
+            right();
         }
 
+        if (dato2 >= 800)
+        {
+            forward();
+        }
+        if (dato2 < 300)
+        {
+            backward();
+        }
     }
 }

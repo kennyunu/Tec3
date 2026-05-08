@@ -5832,6 +5832,9 @@ MonoBehaviour:
   vertical: 0
   valor: 60
   vel: 0.5
+  vel2: 0.5
+  dato: 0
+  dato2: 0
 --- !u!114 &406733228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5845,6 +5848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 406733225}
+  controlador: {fileID: 406733227}
 --- !u!65 &406733229
 BoxCollider:
   m_ObjectHideFlags: 0
