@@ -5828,13 +5828,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff29a12838effb4c8611dcbb102f96c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontal: 0
-  vertical: 0
-  valor: 60
   vel: 0.5
-  vel2: 0.5
   dato: 0
   dato2: 0
+  dato3: 0
+  dato4: 0
 --- !u!114 &406733228
 MonoBehaviour:
   m_ObjectHideFlags: 0

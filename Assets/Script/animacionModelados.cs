@@ -9,6 +9,7 @@ public class animacionModelados : MonoBehaviour {
 
     private int dato;
     private int dato2;
+    private int dato3;
 
     public NewBehaviourScript controlador;
 
@@ -46,21 +47,24 @@ public class animacionModelados : MonoBehaviour {
     {
         dato = controlador.dato;
         dato2 = controlador.dato2;
-        animar(dato + "," + dato2);
+        dato3 = controlador.dato3;
+        animar(dato + "," + dato2 + "," + dato3);
     }
 
-    void animar(string datoArduino)  //"data1,data2"
-                                    //  0      1    
+    void animar(string datoArduino)  //"data1,data2,data3"
+                                    //  0      1      2    
                                     //datosArray[0] = "data1"
                                     //datosArray[1] = "data2"
+                                    //datosArray[2] = "data3"
     {
-        string[] datosArray = datoArduino.Split(char.Parse(","));
+        string[] datosArray = datoArduino.Split(',');
 
-        if (datosArray.Length == 2)
+        if (datosArray.Length == 4)
         {
             dato = int.Parse(datosArray[0]);   //data1 = "data1"
             dato2 = int.Parse(datosArray[1]);  //data2  = "data2"
-            print(dato + "   " + dato2);
+            dato3 = int.Parse(datosArray[2]);  //data3  = "data3"
+            print(dato + "   " + dato2 + "   " + dato3);
         }
 
         anim.SetBool("adelante", false);
@@ -68,20 +72,20 @@ public class animacionModelados : MonoBehaviour {
         anim.SetBool("derecha", false);
         anim.SetBool("izquierda", false);
 
-        if (dato >= 800)
+        if (dato == 1)
         {
             left();
         }
-        if (dato < 300)
+        if (dato2 == 1)
         {
             right();
         }
 
-        if (dato2 >= 800)
+        if (dato3 >= 800)
         {
             forward();
         }
-        if (dato2 < 300)
+        if (dato3 <= 300)
         {
             backward();
         }
